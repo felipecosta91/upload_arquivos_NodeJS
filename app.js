@@ -1,0 +1,10 @@
+const express = require('express')
+const app = express()
+const multer = require('multer')
+const multerConfig = require('./multer')
+const PORT = process.env.PORT || 3332
+const upload = require('./routes/upload')
+app.use(express.json())
+app.route('/upload')
+   .post(multer(multerConfig).single('file'),upload.Post)
+app.listen(PORT,()=>{console.log(`http://localhost:${PORT}`)})
